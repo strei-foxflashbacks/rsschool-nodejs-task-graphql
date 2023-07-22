@@ -13,6 +13,10 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
       },
     },
     async handler(req) {
+      // const { query, variables } = req.body;
+      // req.body
+      // then take variables and place in graphpql fn
+      // pass schema, souce and optional shit
       return {};
     },
   });
