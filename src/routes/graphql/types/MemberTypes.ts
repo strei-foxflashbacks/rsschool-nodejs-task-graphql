@@ -1,5 +1,5 @@
 import { GraphQLFloat, GraphQLInt, GraphQLObjectType } from "graphql";
-import MemberTypeId from "./memberTypeId.js";
+import MemberTypeId from "./MemberTypeId.js";
 
 const MemberTypes = new GraphQLObjectType({
   name: 'MemberTypes',
