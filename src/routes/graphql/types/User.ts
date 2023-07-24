@@ -5,11 +5,10 @@ import { UUIDType } from "./uuid.js";
 import Profiles from "./Profiles.js";
 import { FastifyInstance } from "fastify";
 import Posts from "./Posts.js";
-import UsersList from "./UsersList.js";
 
 const User = new GraphQLObjectType({
   name: 'User',
-  fields: {
+  fields: () => ({
     id: { type: UUIDType },
     name: { type: GraphQLString },
     balance: { type: GraphQLFloat },
@@ -39,7 +38,7 @@ const User = new GraphQLObjectType({
       },
     },
     subscribedToUser: {
-      type: UsersList,
+      type: new GraphQLList(User),
       resolve: async (obj, _, ctx: FastifyInstance) => {
         return await ctx.prisma.user.findMany({
           where: {
@@ -53,7 +52,7 @@ const User = new GraphQLObjectType({
       },
     },
     userSubscribedTo: {
-      type: UsersList,
+      type: new GraphQLList(User),
       resolve: async (obj, _, ctx: FastifyInstance) => {
         return await ctx.prisma.user.findMany({
           where: {
@@ -66,6 +65,6 @@ const User = new GraphQLObjectType({
         });
       },
     },
-  }
+  })
 });
 export default User;
